@@ -49,6 +49,6 @@ jobs:
           
   # passing the secret to a nested reusable workflow
   pass-secret-to-workflow:
-    uses: ./.github/workflows/my-workflow
+    uses: ./.github/workflows/maven.yml
     secrets:
        token: ${{ secrets.GITHUB_TOKEN }}

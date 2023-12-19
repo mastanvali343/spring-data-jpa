@@ -35,6 +35,11 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+      # passing the secret to an action
+    - name: Pass the received secret to an action
+      uses: ./.github/actions/my-action
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
@@ -42,15 +47,6 @@ jobs:
       with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
-  pass-secret-to-action:
-    runs-on: ubuntu-latest
-    steps:
-    # passing the secret to an action
-      - name: Pass the received secret to an action
-        uses: ./.github/actions/my-action
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
   # passing the secret to a nested reusable workflow
   pass-secret-to-workflow:
     uses: ./.github/workflows/my-workflow

@@ -49,10 +49,10 @@ jobs:
       - name: Pass the received secret to an action
         uses: ./.github/actions/my-action
         with:
-          token: ${{ secrets.access-token }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
   # passing the secret to a nested reusable workflow
   pass-secret-to-workflow:
     uses: ./.github/workflows/my-workflow
     secrets:
-       token: ${{ secrets.access-token }}
+       token: ${{ secrets.GITHUB_TOKEN }}
